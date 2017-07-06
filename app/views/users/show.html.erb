@@ -1,22 +1,27 @@
-<div class='container'>
-  <div class='row'>
-    <div class='col-xs-6 col-xs-offset-6 col-md-6 col-md-offset-3'>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 table">
         <h4><%= @user.email %></h4>
     </div>
   </div>
 </div>
 
-<% if current_user != @user %>
-  <% if current_user.following.find_by(followee_id: @user) %>
-    <%= form_for(current_user.following.find_by(followee_id: @user.id), html: { method: :delete }) do |f| %>
-    <%= f.submit 'Unfollow', class: 'btn' %>
-    <% end %>
-  <% else %>
-    <%= form_for(current_user.following.build) do |f| %>
-    <div><%= hidden_field_tag :followee_id, @user.id %></div>
-    <%= f.submit 'Follow', class: 'btn btn-primary' %>
-    <% end %>
-  <% end %>
-<% end %>
-
-<%= link_to 'Back', root_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 table">
+      <% if current_user != @user %>
+        <% if current_user.following.find_by(followee_id: @user) %>
+          <%= form_for(current_user.following.find_by(followee_id: @user.id), html: { method: :delete }) do |f| %>
+          <%= f.submit 'Unfollow', class: 'btn' %>
+          <% end %>
+        <% else %>
+          <%= form_for(current_user.following.build) do |f| %>
+          <div><%= hidden_field_tag :followee_id, @user.id %></div>
+          <%= f.submit 'Follow', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+      <% end %>
+      <button type="button" class="btn btn-info active"><%= link_to 'Back', root_path %></button>
+    </div>
+  </div>
+</div>

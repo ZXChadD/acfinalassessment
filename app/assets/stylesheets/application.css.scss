@@ -14,6 +14,18 @@
  *= require_self
  */
 
- // @import "bootstrap-sprockets";
- // @import "bootstrap";
- // @import "css/**/*";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+* {
+  font-family: 'Kurale', serif !important;
+  font-size: 105%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#table {
+  text-align: center;
+}
