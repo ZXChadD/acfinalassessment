@@ -19,4 +19,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+
+  def favourite
+    @user = current_user
+    @followings = @user.following
+  end
+
+
 end

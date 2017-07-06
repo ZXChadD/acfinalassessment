@@ -5,13 +5,15 @@
       <h2>All Notes</h2>
       <% @notes.each do |note| %>
       <ul>
-        <li><%= note.body %>  <%= link_to 'Delete', note_path(note), method: :delete %></li>
+        <li><%= note.body %>  <%= note.user.email %> <%= link_to 'Delete', note_path(note), method: :delete %></li>
         <li>
-          <%= pluralize(note.likes.count, 'like') %>
-          <% unless note.likes.find_by(user_id: current_user.id).present? %>
-            <%= link_to 'Like', like_note_path(note), method: :post %>
-          <% else %>
-            <%= link_to 'Unlike', unlike_note_path(note), method: :delete %>
+          <% if current_user %>
+            <%= pluralize(note.likes.count, 'like') %>
+            <% unless note.likes.find_by(user_id: current_user.id).present? %>
+              <%= link_to 'Like', like_note_path(note), method: :post %>
+            <% else %>
+              <%= link_to 'Unlike', unlike_note_path(note), method: :delete %>
+            <% end %>
           <% end %>
         </li>
         </ul>
