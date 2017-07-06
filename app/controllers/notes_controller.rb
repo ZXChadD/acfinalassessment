@@ -43,6 +43,7 @@ class NotesController < ApplicationController
     @like = @note.likes.new
     @like.user = current_user
     if @like.save
+      NoteMailer.new_like(@like).deliver_now
       redirect_to notes_path
     end
   end
