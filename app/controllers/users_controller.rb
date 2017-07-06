@@ -3,11 +3,20 @@ class UsersController < ApplicationController
 
 
   def homepage
-    @users = User.all
+    unless current_user
+      @users = User.all
+    else
+      @user = current_user
+      @followings = @user.following
+    end
   end
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def alluser
+    @users = User.all
   end
 
 end

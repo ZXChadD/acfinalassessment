@@ -1,16 +1,21 @@
 <div class='container'>
   <div class='row'>
     <div class='col-xs-6 col-xs-offset-6 col-md-6 col-md-offset-3'>
-        <h1>
-          Users
-        </h1>
+      <% unless current_user %>
+        <h1>Users</h1>
         <% @users.each do |user| %>
         <ul>
-          <li>
-            <%= link_to user.email, user_path(user) %>
-          </li>
+          <li><%= link_to user.email, user_path(user) %></li>
         </ul>
         <% end %>
+      <% else %>
+        <h1>Followings</h1>
+        <% @followings.pluck(:followee_id).each do |followee| %>
+        <ul>
+          <li><%= User.find(followee).email %></li>
+        </ul>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

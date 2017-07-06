@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   resources :relationships, only: [:create, :destroy]
   get 'homepage', to: 'users#homepage', as: :homepage
+  get 'alluser', to: 'users#alluser', as: :alluser
+  get 'Favourites', to: 'users#favourite', as: :favourite
+
+
 
   root 'users#homepage'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
