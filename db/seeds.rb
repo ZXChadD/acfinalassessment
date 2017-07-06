@@ -12,5 +12,11 @@ require 'faker'
     email: Faker::Internet.email,
     password: 123456
   )
+end
 
+50.times do
+  Note.create(
+    user_id: Faker::Number.between(1, 31),
+    body: Faker::Lorem.sentence
+  )
 end

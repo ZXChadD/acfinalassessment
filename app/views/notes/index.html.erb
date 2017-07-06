@@ -5,7 +5,8 @@
       <%= link_to 'New Note', new_note_path %>
       <% @notes.each do |note| %>
       <ul>
-        <li><%= note.body %>  <%= note.user.email %> </li>
+        <li><%= link_to note.user.email, user_path(note.user)%> </li>
+        <li><%= note.body %></li>
         <% if note.user == current_user %>
           <li><%= link_to 'Delete', note_path(note), method: :delete %> <%= link_to 'Update', edit_note_path(note) %></li>
         <% end %>
