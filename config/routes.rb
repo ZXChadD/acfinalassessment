@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
 
   resources :users
-  resources :notes
+  resources :notes do
+    member do
+      post 'like'
+      delete 'unlike'
+    end
+  end
 
   resources :relationships, only: [:create, :destroy]
   get 'homepage', to: 'users#homepage', as: :homepage

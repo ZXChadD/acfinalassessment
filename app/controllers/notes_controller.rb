@@ -22,6 +22,22 @@ class NotesController < ApplicationController
     redirect_to notes_path
   end
 
+  def like
+    @note = Note.find(params[:id])
+    @like = @note.likes.new
+    @like.user = current_user
+    if @like.save
+      redirect_to notes_path
+    end
+  end
+
+  def unlike
+    @note = Note.find(params[:id])
+    @like = @note.likes.find_by(user_id: current_user.id)
+    @like.destroy
+    redirect_to notes_path
+  end
+
   private
 
   def note_params
