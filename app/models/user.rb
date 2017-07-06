@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_many :followers, class_name: 'Relationship', foreign_key: 'followee_id', dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :notes, dependent: :destroy
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
 
 end
