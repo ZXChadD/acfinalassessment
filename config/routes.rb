@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
 
   resources :users
+  resources :notes
+
   resources :relationships, only: [:create, :destroy]
   get 'homepage', to: 'users#homepage', as: :homepage
 

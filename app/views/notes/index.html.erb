@@ -1,0 +1,13 @@
+<%= link_to 'New Note', new_note_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3 col-md-6 col-md-offset-3">
+      <h2>All Notes</h2>
+      <% @notes.each do |note| %>
+      <ul>
+        <li><%= note.body %>  <%= link_to 'Delete', note_path(note), method: :delete %></li>
+      </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
